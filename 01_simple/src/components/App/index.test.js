@@ -1,8 +1,8 @@
 import React from "react";
 import Enzyme, { shallow } from "enzyme";
-import renderer from "react-test-renderer";
 import Adapter from "enzyme-adapter-react-16";
 import App from "./";
+import { isRender } from "../../utils/tests";
 Enzyme.configure({ adapter: new Adapter() });
 
 describe("App", () => {
@@ -11,10 +11,7 @@ describe("App", () => {
   /*
    * render the component
    */
-  test("renders correctly", () => {
-    const component = renderer.create(<App />).toJSON();
-    expect(component).toMatchSnapshot();
-  });
+  test("renders correctly", () => isRender(<App />));
 
   /*
    * check state structure

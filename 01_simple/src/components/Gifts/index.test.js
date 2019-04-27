@@ -1,11 +1,11 @@
 import React from "react";
 import Enzyme, { shallow } from "enzyme";
-import renderer from "react-test-renderer";
+import { isRender } from "../../utils/tests";
 import Adapter from "enzyme-adapter-react-16";
 import Gifts from "./";
 Enzyme.configure({ adapter: new Adapter() });
 
-describe("Gift", () => {
+describe("Gifts", () => {
   const mockRemove = jest.fn();
   const id = 1;
   const props = { gift: { id }, removeGift: mockRemove };
@@ -14,10 +14,7 @@ describe("Gift", () => {
   /*
    * Render correctly
    */
-  test("render correctly", () => {
-    const component = renderer.create(<Gifts />).toJSON();
-    expect(component).toMatchSnapshot();
-  });
+  test("render correctly", () => isRender(<Gifts />));
 
   /*
    * Init person and present in state

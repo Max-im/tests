@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Gift render correctly 1`] = `
+exports[`Gifts render correctly 1`] = `
 <div>
   <form
     className=""

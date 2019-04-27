@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
+import { getNexId } from "../../utils";
 import Gifts from "../Gifts";
 
 class App extends Component {
@@ -8,9 +9,7 @@ class App extends Component {
   };
 
   addGift = () => {
-    const { gifts } = this.state;
-    gifts.push({ id: gifts.length + 1 });
-    this.setState({ gifts });
+    this.setState({ gifts: getNexId(this.state.gifts) });
   };
 
   removeGift = id => {
@@ -23,8 +22,8 @@ class App extends Component {
       <div className="app">
         <h2>Gift Giver</h2>
         <div className="gift-list">
-          {this.state.gifts.map(item => (
-            <Gifts key={item.id} gift={item} removeGift={this.removeGift} />
+          {this.state.gifts.map(gift => (
+            <Gifts key={gift.id} gift={gift} removeGift={this.removeGift} />
           ))}
         </div>
         <Button className="btn-add" onClick={this.addGift}>
