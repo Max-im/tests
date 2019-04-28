@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App render successful 1`] = `
+<div>
+  <h2>
+    Balance
+  </h2>
+  <hr />
+  <div>
+    <h3
+      className="balance"
+    >
+      Balance 
+      0
+    </h3>
+    <br />
+    <input
+      className="input-wallet"
+      onChange={[Function]}
+    />
+    <button
+      className="btn-deposit"
+      onClick={[Function]}
+    >
+      add deposit
+    </button>
+    <button
+      className="btn-withdraw"
+      onClick={[Function]}
+    >
+      withdraw
+    </button>
+  </div>
+  <hr />
+  <div>
+    <h3>
+      Bitcoin balance: 
+      
+    </h3>
+  </div>
+</div>
+`;
