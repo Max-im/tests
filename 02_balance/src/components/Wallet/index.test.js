@@ -1,9 +1,7 @@
 import React from "react";
-import Enzyme, { shallow } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import { shallow } from "enzyme";
 import { Wallet } from "./";
 import { isRender } from "../../utils/tests";
-Enzyme.configure({ adapter: new Adapter() });
 
 describe("Wallet", () => {
   const mockDeposit = jest.fn();
@@ -15,7 +13,13 @@ describe("Wallet", () => {
     onWithdraw: mockWithdraw
   };
   const wallet = shallow(<Wallet {...props} />);
-  test("render successful", () => isRender(<Wallet {...props} />));
+  test("component renders successful", () => isRender(wallet, "wallet"));
+  test("title renders successful", () => isRender(wallet, "wallet__title"));
+  test("input renders successful", () => isRender(wallet, "wallet__input"));
+  test("deposit btn renders properly", () =>
+    isRender(wallet, "wallet__depositBtn"));
+  test("withdraw renders successful", () =>
+    isRender(wallet, "wallet__withdrawBtn"));
 
   test("display balance from props", () => {
     expect(wallet.find(".balance").text()).toBe("Balance 20");

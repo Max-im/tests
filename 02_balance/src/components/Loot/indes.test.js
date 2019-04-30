@@ -1,9 +1,7 @@
 import React from "react";
-import Enzyme, { shallow } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import { shallow } from "enzyme";
 import { Loot } from "./";
 import { isRender } from "../../utils/tests";
-Enzyme.configure({ adapter: new Adapter() });
 
 describe("Loot", () => {
   const mockFetch = jest.fn();
@@ -14,9 +12,14 @@ describe("Loot", () => {
   };
   const loot = shallow(<Loot {...props} />);
 
-  test("render", () => isRender(loot));
+  test("render loot component", () => isRender(loot, "loot"));
+  test("render loot title", () => isRender(loot, "loot__title"));
 
-  test("launch fetchBitcoin", () => expect(mockFetch).toHaveBeenCalled());
+  test("launch fetchBitcoin", () => {
+    expect(mockFetch).toHaveBeenCalledTimes(0);
+    loot.instance().componentDidMount();
+    expect(mockFetch).toHaveBeenCalledTimes(1);
+  });
 
   test("display header correctly", () => {
     expect(loot.find("h3").text()).toBe("Bitcoin balance: 0.01");

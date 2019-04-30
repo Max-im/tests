@@ -28,15 +28,29 @@ export class Wallet extends Component {
 
   render() {
     return (
-      <div>
-        <h3 className="balance">Balance {this.props.balance}</h3>
+      <div data-test="wallet">
+        <h3 className="balance" data-test="wallet__title">
+          Balance {this.props.balance}
+        </h3>
         <br />
-        <input className="input-wallet" onChange={this.updateBalance} />
+        <input
+          className="input-wallet"
+          onChange={this.updateBalance}
+          data-test="wallet__input"
+        />
 
-        <button className="btn-deposit" onClick={this.addDeposit}>
+        <button
+          className="btn-deposit"
+          onClick={this.addDeposit}
+          data-test="wallet__depositBtn"
+        >
           add deposit
         </button>
-        <button className="btn-withdraw" onClick={this.addWithdraw}>
+        <button
+          className="btn-withdraw"
+          onClick={this.addWithdraw}
+          data-test="wallet__withdrawBtn"
+        >
           withdraw
         </button>
       </div>

@@ -4,12 +4,12 @@ import Loot from "../Loot";
 
 export default function index() {
   return (
-    <div>
-      <h2>Balance</h2>
+    <div data-test="app">
+      <h2 data-test="app__title">Balance</h2>
       <hr />
-      <Wallet data-test="app-wallet" />
+      <Wallet data-test="app__wallet" />
       <hr />
-      <Loot data-test="app-loot" />
+      <Loot data-test="app__loot" />
     </div>
   );
 }

@@ -24,8 +24,10 @@ export class Loot extends Component {
 
   render() {
     return (
-      <div>
-        <h3>Bitcoin balance: {this.retrieveBitcoin()}</h3>
+      <div data-test="loot">
+        <h3 data-test="loot__title">
+          Bitcoin balance: {this.retrieveBitcoin()}
+        </h3>
       </div>
     );
   }

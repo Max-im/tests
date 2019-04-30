@@ -1,7 +1,5 @@
 import React from "react";
-import renderer from "react-test-renderer";
 
-export const isRender = component => {
-  const c = renderer.create(component);
-  expect(c.toJSON()).toMatchSnapshot();
+export const isRender = (component, attr) => {
+  expect(component.find(`[data-test="${attr}"]`).exists()).toBe(true);
 };

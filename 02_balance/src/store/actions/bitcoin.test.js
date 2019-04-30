@@ -1,21 +1,20 @@
-import configMockStore from "redux-mock-store";
-import thunk from "redux-thunk";
-import fetchMock from "fetch-mock";
-import { FETCH_BITCOIN } from "./constants";
+import moxios from "moxios";
 import { fetchBitcoin } from "./bitcoin";
+import store from "../store";
 
-const createMockStore = configMockStore([thunk]);
-const store = createMockStore({ bitcoin: {} });
-const mockResponce = { body: { bpi: "bitcoin price index" } };
+describe("fetch data from api", () => {
+  beforeEach(() => moxios.install());
+  afterEach(() => moxios.uninstall());
 
-fetchMock.get(
-  "https://api.coindesk.com/v1/bpi/currentprice.json",
-  mockResponce
-);
+  const expectedResponse = { body: { bpi: "bitcoin price index" } };
+  const { dispatch, getState } = store;
+  const url = "https://api.coindesk.com/v1/bpi/currentprice.json";
 
-test("async fetching bitcoins data", () => {
-  const expectedActions = [{ type: FETCH_BITCOIN, payload: mockResponce.body }];
-  return store.dispatch(fetchBitcoin()).then(() => {
-    expect(store.getActions()).toEqual(expectedActions);
+  moxios.stubRequest(url, { status: 200, response: expectedResponse });
+
+  test("async fetching bitcoins data", () => {
+    return dispatch(fetchBitcoin()).then(() => {
+      expect(expectedResponse).toEqual(getState().bitcoin);
+    });
   });
 });
